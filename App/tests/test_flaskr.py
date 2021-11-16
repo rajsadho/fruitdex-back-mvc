@@ -1,5 +1,5 @@
 import os, tempfile, pytest, logging
-from App.main import create_app, db
+from App import create_app, db
 
 from App.controllers import ( 
     get_all_users_json, 
