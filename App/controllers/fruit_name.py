@@ -6,7 +6,7 @@ def get_all_fruit_names_json():
     fruits=fruit_name.query.all()
     if not fruits:
         return[]
-    fruits=[fruits.toDict()for fruit in fruits]
+    fruits=[fruit.toDict()for fruit in fruits]
     return fruits
 
 def create_fruit_name(name,name_type):
