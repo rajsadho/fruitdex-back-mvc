@@ -61,9 +61,9 @@ def client():
 
 # This is a unit test because there are no side effects
 # Test 1: Checks if api/lol route returns 'lol'
-# def test_hello(client):
-#     response = client.get('/api/lol')
-#     assert b'lol' in response.data
+def test_root(client):
+    response = client.get('/')
+    assert response.status_code == 200
 
 # Test 2: api/users should return an empty array when there are no users
 # def test_no_users(client):
