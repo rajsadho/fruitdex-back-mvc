@@ -3,18 +3,18 @@ from flask_login import LoginManager, current_user, login_user, login_required,l
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
 
-from App.controllers import (get_all_fruits,get_fruit_by_name,create_image,get_fruit_by_tags)
+from App.controllers import (get_all_fruits_json,get_fruit_by_name,create_image,get_fruit_by_tags)
 
 
 @user_views.route('/fruits',methods=['GET'])
 def get_all_fruits():
-    fruits=get_all_fruits()
-    return render_template('index.html',fruits=fruits)
+    fruits=get_all_fruits_json()
+    return fruits
 
 @user_views.route('/search/<fruitName>',methods=['GET'])
 def search(fruitName):
     fruit=get_fruit_by_name(fruitName)
-    return render_template('index',fruit=fruit)
+    return fruit.toDict()
 
 @user_views.route('/upload',methods=['POST'])
 @login_required
@@ -26,7 +26,8 @@ def upload():
 @use_views.route('/filter',methods='GET')
 def filter(tag):
     fruits=get_fruit_by_tags(tag)
-    return render_template('index',fruits=fruits)
+    fruits=[fruits.toDict() for fruit in fruits]
+    return fruits
 
 
     
