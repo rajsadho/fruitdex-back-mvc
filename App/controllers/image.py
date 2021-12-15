@@ -1,10 +1,8 @@
-from flask import redirect, render_template, request, url_for, jsonify
-
 from App.models import ( Image, db )
 
 def get_all_images_json():
     images=Image.query.all()
-    if not image:
+    if not images:
         return[]
     images=[images.toDict() for image in images]
     return images

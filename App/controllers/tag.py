@@ -1,13 +1,11 @@
-from flask import redirect, render_template, request, url_for, jsonify
-
 from App.models import ( Tag, db )
 
 def get_all_tags_json():
     tags = Tag.query.all()
     if not tags:
-        return jsonify(tags=[])
+        return []
     tags = [tag.toDict() for tag in tags]
-    return jsonify(tags=tags)
+    return tags
 
 def create_tag(value, tag_type, description):
     tag = Tag(value=value, tag_type=tag_type, description=description)

@@ -1,13 +1,11 @@
-from flask import jsonify
-
 from App.models import ( FruitName, db )
 
 def get_all_fruit_names_json():
     names=FruitName.query.all()
     if not names:
-        return jsonify(names=[])
+        return []
     names=[name.toDict() for name in names]
-    return jsonify(fruit_names=names)
+    return names
 
 def create_fruit_name(name,name_type):
     fruit=FruitName(name=name,name_type=name_type)

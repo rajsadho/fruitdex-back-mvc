@@ -4,9 +4,9 @@ from App.models import db
 class Fruit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     wiki_uri = db.Column(db.String)
-    tags = db.relationship("Tag", backref="fruits")
     names =  db.relationship("FruitName", backref="fruits")
     images = db.relationship("Image", backref="fruits")
+    tags = db.relationship("FruitTag", backref="fruits")
 
     def toDict(self):
         return{
