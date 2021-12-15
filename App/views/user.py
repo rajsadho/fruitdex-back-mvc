@@ -30,7 +30,7 @@ def signup():
     create_user(data['fname'], data['lname'], data['email'], data['password'])
     return 'CREATED'
 
-@user.views.route('/login',methods=['GET'])
+@user_views.route('/login',methods=['GET'])
 def login():
     form = LogIn()
     if form.validate_on_submit(): 

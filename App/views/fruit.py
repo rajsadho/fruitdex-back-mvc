@@ -1,4 +1,5 @@
 from flask import Blueprint, redirect, render_template, request, jsonify, send_from_directory
+from flask_login import LoginManager, current_user, login_user, login_required,logout_user
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
 
@@ -16,6 +17,7 @@ def search(fruitName):
     return render_template('index',fruit=fruit)
 
 @user_views.route('/upload',methods=['POST'])
+@login_required
 def upload():
     data=request.json
     create_image(data['uri'],data['text'],0,0)
