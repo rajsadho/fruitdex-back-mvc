@@ -24,3 +24,11 @@ def get_all_fruits_json():
 def get_all_fruits():
     return Fruit.query.all()
 
+def get_fruit_by_name(name):
+    return fruit.query.filter_by(names=name).first()
+
+def get_fruit_by_tags(tag):
+    return Fruit.query.filter_by(tag=tag).all()
+
+
+
