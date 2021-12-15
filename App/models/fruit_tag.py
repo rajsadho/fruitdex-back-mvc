@@ -8,5 +8,5 @@ class FruitTag(db.Model):
 
     extra_data = db.Column(db.String(50))
 
-    fruit = db.relationship('Fruit', backref='tags')
-    tag =db. relationship('Tag', backref='fruits')
+    fruit = db.relationship('Fruit', backref='tag')
+    tag =db. relationship('Tag', backref='fruit')

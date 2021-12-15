@@ -6,6 +6,8 @@ class Tag(db.Model):
     value = db.Column(db.String)
     tag_type = db.Column(db.String)
     description = db.Column(db.String)
+
+    fruits = db.relationship("FruitTag", backref="tags")
     
     def toDict(self):
         return{
