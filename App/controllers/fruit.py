@@ -44,6 +44,11 @@ def get_fruit_by_name(name):
         filter(FruitName.name == name).\
         all()
 
+def get_fruit_dict_by_name(name):
+    fruits = get_fruit_by_name(name)
+    fruits = [f.toDict() for f in fruits]
+    return fruits
+
 def get_fruit_by_tag(tag):
     return db.session.query(Fruit).\
         join(FruitTag, Fruit.id == FruitTag.fruit_id).\
