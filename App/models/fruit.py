@@ -13,7 +13,7 @@ class Fruit(db.Model):
             'id': self.id,
             'wiki_uri': self.wiki_uri,
             'names': [n.toDict() for n in self.names],
-            'tags': [t.toDict() for t in self.tags],
+            'tags': [t.tag.toDict() for t in self.tags],
             'images': [i.toDict() for i in self.images]
         }
     
