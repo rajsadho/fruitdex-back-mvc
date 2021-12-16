@@ -18,8 +18,15 @@ def create_fruit_names(fruits):
         db.session.add(newfruit)
     db.session.commit()
 
+def create_fruit_names_list(fruits):
+    names = []
+    for fruit in fruits:
+        newfruit=FruitName(name=fruit['name'],name_type=fruit['name_type'])
+        names.append(newfruit)
+    return names
+
 def get_fruit_by_name(name):
-    return FruitName.query.filter_by(name=name).first()
+    return FruitName.query.filter_by(name=name).all()
 
 def get_fruit_by_nametype(name_type):
-    return FruitName.query.filter_by(name_type=name_type).first()
+    return FruitName.query.filter_by(name_type=name_type).all()

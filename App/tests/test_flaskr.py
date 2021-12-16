@@ -3,8 +3,7 @@ from App.main import create_app, db
 
 from App.controllers import ( 
     get_all_users_json, 
-    create_users, 
-    get_user_by_fname ,
+    create_users,
     create_user
 )
 

@@ -7,14 +7,14 @@ def get_all_tags_json():
     tags = [tag.toDict() for tag in tags]
     return tags
 
-def create_tag(value, tag_type, description):
-    tag = Tag(value=value, tag_type=tag_type, description=description)
+def create_tag(value, tag_type):
+    tag = Tag(value=value, tag_type=tag_type)
     db.session.add(tag)
     db.session.commit()
 
 def create_tags(tags):
     for tag in tags:
-        newTag = Tag(value=tag['value'], tag_type=tag['tag_type'], description=tag['description'])
+        newTag = Tag(value=tag['value'], tag_type=tag['tag_type'])
         db.session.add(newTag)
     db.session.commit()
 
