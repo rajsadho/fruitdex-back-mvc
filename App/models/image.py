@@ -19,9 +19,12 @@ class Image(db.Model):
     def toDict(self):
         return{
             'id': self.id,
-            'target_table': self.target_table,
-            'target_id': self.target_id,
-            'reporter_id': self.reporter_id
+            'uri': self.uri,
+            'alt_tex': self.alt_text,
+            'upvotes': self.upvotes,
+            'downvotes': self.downvotes,
+            'uploader_id': self.uploader_id,
+            'fruit_id': self.fruit_id
         }
     
     def __repr__(self):
