@@ -17,7 +17,7 @@ class User(db.Model):
     def toDict(self):
         return{
             'id': self.id,
-            'username': self.first_name,
+            'username': self.username,
             'email': self.email
         }
 

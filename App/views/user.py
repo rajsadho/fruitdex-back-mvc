@@ -3,11 +3,11 @@ from flask_login import LoginManager, current_user, login_user, login_required,l
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
 
-from App.controllers import ( get_all_users_json, get_all_users,create_user )
+from App.controllers import ( get_all_users_json, create_user )
 
 @user_views.route('/api/users')
 def client_app():
-    users = get_all_users()
+    users = get_all_users_json()
     return jsonify(users)
 
 @user_views.route('/signup',methods=["POST"])
