@@ -3,7 +3,7 @@ from flask_migrate import Migrate, MigrateCommand
 from App.main import create_app
 from App.models import db, User
 from App.controllers import create_users
-from fillDB import create_default_fruits, create_default_tags, create_default_users
+from fillDB import create_default_fruits, create_default_images, create_default_tags, create_default_users
 
 app = create_app()
 manager = Manager(app)
@@ -33,6 +33,8 @@ def fillDB():
     print("tags created")
     create_default_fruits(datapath + "fruits.json")
     print("fruits created")
+    create_default_images(datapath + "images.json")
+    print("images created")
     
 
 if __name__ == "__main__":
