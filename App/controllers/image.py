@@ -1,4 +1,5 @@
-from App.models import ( Image, db )
+from App.models import ( Image, User, Fruit, db )
+from App.controllers import ( get_user_by_username, get_fruit_by_name )
 
 def get_all_images_json():
     images=Image.query.all()
@@ -14,8 +15,13 @@ def create_image(uri,alt_text,upvotes,downvotes):
 
 def create_images(images):
     for image in images:
-        newimage=Image(uri=image['uri'],alt_text=image['alt_text'],upvotes=image['upvote'],downvote=image['downvote'])
+        user = get_user_by_username(image['username'])
+        fruit = get_fruit_by_name(image['fruit'])
+        newimage = Image(uri=image['uri'],alt_text=image['alt_text'])
+        newimage.uploader = user
+        newimage.fruit = fruit[0]
         db.session.add(newimage)
+        
     db.session.commit()
 
 def get_image_by_text(alt_text):
