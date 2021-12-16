@@ -1,7 +1,8 @@
 import os
 from flask import Flask
 from flask_jwt import JWT
-from datetime import timedelta 
+from datetime import timedelta
+from flask_cors import CORS
 
 from App.models import db, User
 
@@ -67,6 +68,7 @@ def create_app(config={}):
     db.init_app(app)
     add_views(app, views)  
     jwt = JWT(app, authenticate, identity)
+    CORS(app)
     app.app_context().push()
     return app
 
