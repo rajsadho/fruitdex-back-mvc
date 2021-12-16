@@ -14,7 +14,7 @@ def create_image(uri,alt_text,upvotes,downvotes):
 
 def create_images(images):
     for image in images:
-        newimage=Image(uri=image['uri'],alt_text=image['alt_text'],upvotes=image['upvote'],downvote=image['downvote'])
+        newimage=Image(uri=image['uri'],alt_text=image['alt_text'])
         db.session.add(newimage)
     db.session.commit()
 

@@ -1,4 +1,4 @@
-from App.models import ( Fruit, FruitTag, db )
+from App.models import ( Fruit, FruitTag, FruitName, Tag, db )
 from App.controllers import ( create_fruit_names_list, get_tag_by_value )
 
 
@@ -39,10 +39,17 @@ def get_all_fruits():
     return Fruit.query.all()
 
 def get_fruit_by_name(name):
-    return Fruit.query.filter_by(names=name).all()
+    return db.session.query(Fruit).\
+        join(FruitName, Fruit.id == FruitName.fruit_id).\
+        filter(FruitName.name == name).\
+        all()
 
 def get_fruit_by_tag(tag):
-    return Fruit.query.filter_by(tags=tag).all()
+    return db.session.query(Fruit).\
+        join(FruitTag, Fruit.id == FruitTag.fruit_id).\
+        join(Tag, Tag.id == FruitTag.tag_id).\
+        filter(Tag.value == tag).\
+        all()
 
 
 
