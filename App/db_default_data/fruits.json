@@ -1,0 +1,125 @@
+{
+    "fruits": [
+        {
+            "wiki_uri": "en.wikipedia.org/wiki/Coconut",
+            "names": [
+                {
+                    "name": "cocos nucifera",
+                    "name_type": "scientific"
+                },
+                {
+                    "name": "coconut",
+                    "name_type": "primary"
+                },
+                {
+                    "name": "coco",
+                    "name_type": "secondary"
+                }
+            ],
+            "tags": [
+                {
+                    "value": "green"
+                },
+                {
+                    "value": "sweet"
+                }
+            ]
+        },
+        {
+            "wiki_uri": "en.wikipedia.org/wiki/Syzygium_malaccense",
+            "names": [
+                {
+                    "name": "syzygium malaccense",
+                    "name_type": "scientific"
+                },
+                {
+                    "name": "pomerac",
+                    "name_type": "primary"
+                },
+                {
+                    "name": "malaba",
+                    "name_type": "secondary"
+                },
+                {
+                    "name": "otaheite apple",
+                    "name_type": "secondary"
+                },
+                {
+                    "name": "kwachimelon",
+                    "name_type": "secondary"
+                }				
+            ],
+            "tags": [
+                {
+                    "value": "red"
+                },
+                {
+                    "value": "sweet"
+                },
+                {
+                    "value": "firm"
+                }
+            ]
+        },
+        {
+            "wiki_uri": "en.wikipedia.org/wiki/Melicoccus_bijugatus",
+            "names": [
+                {
+                    "name": "melicoccus bijugatus",
+                    "name_type": "scientific"
+                },
+                {
+                    "name": "chenette",
+                    "name_type": "primary"
+                },
+                {
+                    "name": "spanish lime",
+                    "name_type": "secondary"
+                },
+                {
+                    "name": "genip",
+                    "name_type": "secondary"
+                }				
+            ],
+            "tags": [
+                {
+                    "value": "green"
+                },
+                {
+                    "value": "sour"
+                },
+                {
+                    "value": "soft"
+                }
+            ]
+        },
+        {
+            "wiki_uri": "en.wikipedia.org/wiki/Chrysophyllum_cainito",
+            "names": [
+                {
+                    "name": "chrysophyllum cainito",
+                    "name_type": "scientific"
+                },
+                {
+                    "name": "caimet",
+                    "name_type": "primary"
+                },
+                {
+                    "name": "star apple",
+                    "name_type": "secondary"
+                }
+            ],
+            "tags": [
+                {
+                    "value": "purple"
+                },
+                {
+                    "value": "sour"
+                },
+                {
+                    "value": "soft"
+                }
+            ]
+        }
+    ]
+}

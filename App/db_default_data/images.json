@@ -1,0 +1,40 @@
+{
+    "images": [
+        {
+            "username": "admin",
+            "uri": "coconut_admin_1639626534050.jpg",
+            "fruit": "coconut",
+            "alt_text": "Picture of coconuts on a tree"
+        },
+        {
+            "username": "bobby",
+            "uri": "pomerac_bobby_1639626681044.JPG",
+            "fruit": "pomerac",
+            "alt_text": "Pommeracs in a tree"
+        },
+        {
+            "username": "bobby",
+            "uri": "pomerac_bobby_1639686681044.jpg",
+            "fruit": "pomerac",
+            "alt_text": "Two ripe pomeracs"
+        },
+        {
+            "username": "fruitlover100",
+            "uri": "pomerac_fruitlover100_1699626681044.jpg",
+            "fruit": "pomerac",
+            "alt_text": "pomeracs in a bunch"
+        },
+        {
+            "username": "fruitlover100",
+            "uri": "chenette_fruitlover100_163928321044.jpg",
+            "fruit": "chenette",
+            "alt_text": "Chennette on a table"
+        },
+        {
+            "username": "fruitlover100",
+            "uri": "chenette_fruitlover100_1639696681044.jpg",
+            "fruit": "chenette",
+            "alt_text": "Picked chenette"
+        }
+    ]
+}

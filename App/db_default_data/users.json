@@ -1,0 +1,24 @@
+{
+    "users": [
+        {
+            "username": "admin",
+            "email": "admin@fruitdex.com",
+            "password": "0(uJio3#"
+        },
+        {
+            "username": "bobby",
+            "email": "bobby@example.com",
+            "password": "w90eiw0e"
+        },
+        {
+            "username": "sammy",
+            "email": "sammy@example.com",
+            "password": "23r32rr3"
+        },
+        {
+            "username": "fruitlover100",
+            "email": "fruity@example.com",
+            "password": "fsi)9jee"
+        }        
+    ]
+}
