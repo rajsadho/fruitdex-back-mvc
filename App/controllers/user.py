@@ -25,5 +25,12 @@ def create_users(users):
 def get_user_by_username(username):
     return User.query.filter_by(username=username).first()
 
+def get_user_json_by_id(id):
+    user = User.query.filter_by(id=id).first()
+    if user:
+        return user.toDict()
+    else:
+        return None
+
 def get_all_users():
-    return  User.query.all()
+    return User.query.all()

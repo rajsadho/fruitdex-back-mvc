@@ -1,5 +1,6 @@
 from App.models import ( Fruit, FruitTag, FruitName, Tag, db )
 from App.controllers import ( create_fruit_names_list, get_tag_by_value )
+from random import randint
 
 
 def create_fruit(wiki_uri,names):
@@ -44,6 +45,13 @@ def get_fruit_by_name(name):
         filter(FruitName.name == name).\
         all()
 
+def get_fruit_dict_by_id(id):
+    fruit = Fruit.query.filter_by(id=id)
+    if fruit:
+        return fruit.toDict()
+    else:
+        return None
+
 def get_fruit_dict_by_name(name):
     fruits = get_fruit_by_name(name)
     fruits = [f.toDict() for f in fruits]
@@ -55,6 +63,11 @@ def get_fruit_by_tag(tag):
         join(Tag, Tag.id == FruitTag.tag_id).\
         filter(Tag.value == tag).\
         all()
+
+def get_random_fruit_json():
+    fruits = get_all_fruits_json()
+    random_fruit = fruits[randint(0, len(fruits) - 1)]
+    return random_fruit
 
 
 
