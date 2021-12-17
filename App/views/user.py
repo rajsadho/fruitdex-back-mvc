@@ -7,7 +7,9 @@ from App.controllers import (
     get_all_users_json, 
     create_user, 
     get_user_json_by_id,
-    get_images_by_user_id_json
+    get_images_by_user_id_json,
+    get_user_by_username,
+    get_user_by_email
     )
 
 @user_views.route('/api/users')
@@ -28,9 +30,9 @@ def get_user_images(user_id):
 @user_views.route('/signup',methods=["POST"])
 def signup():
     data=request.json
+    if get_user_by_username(data['username']):
+        return jsonify(message='Username already in use'), 403
+    if get_user_by_email(data['email']):
+        return jsonify(message='Email already in use'), 403
     create_user(data['username'], data['email'], data['password'])
-    return 'CREATED'
-
-@user_views.route('/login',methods=["GET"])
-def login():
-    return ""
+    return jsonify(message='Created')

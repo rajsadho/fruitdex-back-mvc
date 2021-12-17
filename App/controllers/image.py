@@ -1,5 +1,6 @@
 from App.models import ( Image, User, Fruit, db )
 from App.controllers import ( get_user_by_username, get_fruit_by_name )
+from flask_jwt import current_identity
 
 def get_all_images_json():
     images=Image.query.all()
@@ -28,8 +29,11 @@ def get_images_by_fruit_id_json(fruit_id):
     images=[image.toDict() for image in images]
     return images
 
-def create_image(uri,alt_text):
-    image=Image(uri=uri,alt_text=alt_text)
+def create_image(args):
+    fruit = Fruit.query.filter_by(id=args['fruit_id']).first()
+    image=Image(uri=args['uri'],alt_text=args['alt_text'])
+    image.fruit = fruit
+    image.uploader = current_identity
     db.session.add(image)
     db.session.commit()
 
