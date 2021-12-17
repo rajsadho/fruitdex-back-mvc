@@ -26,6 +26,7 @@ views = [api_views, user_views, fruit_views, image_views]
 
 def add_views(app, views):
     for view in views:
+        CORS(view, resources={r'/*': {'origins': '*'}})
         app.register_blueprint(view)
 
 def loadConfig(app):
