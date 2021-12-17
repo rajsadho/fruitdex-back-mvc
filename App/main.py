@@ -72,7 +72,7 @@ def create_app(config={}):
     db.init_app(app)
     add_views(app, views)  
     jwt = JWT(app, authenticate, identity)
-    CORS(app)
+    CORS(app, resources={r'/*': {'origins': '*'}})
     app.app_context().push()
     return app
 
