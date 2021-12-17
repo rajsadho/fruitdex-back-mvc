@@ -6,7 +6,7 @@ class Fruit(db.Model):
     wiki_uri = db.Column(db.String)
     names =  db.relationship("FruitName", backref="fruits")
     images = db.relationship("Image", backref="fruits")
-    tags = db.relationship("FruitTag", backref="fruits")
+    tags = db.relationship("FruitTag", back_populates="fruit")
 
     def toDict(self):
         return{

@@ -9,7 +9,7 @@ class Report(db.Model):
     target_id = db.Column(db.String)
     
     reporter_id = db.Column(db.ForeignKey('user.id'))
-    reporter = db.relationship("User", backref="report")
+    reporter = db.relationship("User", backref="report", viewonly=True)
 
     UniqueConstraint(reporter_id, target_id, target_table, name="uxc_0")
 

@@ -10,10 +10,10 @@ class Image(db.Model):
     downvotes = db.Column(db.Integer, default=0)
 
     uploader_id = db.Column(db.ForeignKey('user.id'))
-    uploader = db.relationship("User", backref="image")
+    uploader = db.relationship("User", backref="image", viewonly=True)
     
     fruit_id = db.Column(db.ForeignKey('fruit.id'))
-    fruit = db.relationship("Fruit", backref="image")
+    fruit = db.relationship("Fruit", backref="image", viewonly=True)
 
 
     def toDict(self):
