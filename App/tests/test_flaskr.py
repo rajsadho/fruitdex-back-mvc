@@ -1,5 +1,5 @@
 import os, stat, tempfile, pytest, logging, json
-from App.main import create_app, init_db
+from App.main import create_app, init_db, db
 
 from App.controllers import ( 
     get_all_users_json, 
@@ -23,11 +23,12 @@ def empty_db():
         with open(os.open(os.getcwd()+'/App/temp.db', os.O_CREAT | os.O_WRONLY, 0o777), 'w'): pass
     
     app = create_app({'TESTING': True, 'SQLALCHEMY_DATABASE_URI': 'sqlite:///temp.db'})
-    init_db(app)
+    db.init_app(app)
+    db.create_all()
     yield app.test_client()
     LOGGER.info(os.getcwd())
-    os.chmod(os.getcwd()+'/App/temp.db', stat.S_IRWXO)
-    os.remove(os.getcwd()+'/App/temp.db')
+    db.drop_all()
+    
 
 # This fixture depends on create_users which is tested in test #5 test_create_user
 @pytest.fixture
@@ -57,8 +58,8 @@ def users_in_db():
         }
     ])
     yield app.test_client()
-    os.chmod(os.getcwd()+'/App/temp.db', stat.S_IRWXO)
-    os.remove(os.getcwd()+'/App/temp.db')
+    LOGGER.info(os.getcwd())
+    db.drop_all()
 
 '''
    Unit Tests
@@ -66,30 +67,27 @@ def users_in_db():
 
 # This is a unit test because there are no side effects
 # Test 1: Checks if api/lol route returns 'lol'
-# def test_root(empty_db):
-#     response = empty_db.get('/')
-#     LOGGER.info("This thing on?")
-#     LOGGER.info(os.getcwd())
-#     LOGGER.info(os.path.isfile(os.getcwd()+'/App/temp.db'))
-#     assert response.status_code == 200
+def test_root(empty_db):
+    response = empty_db.get('/')
+    assert response.status_code == 200
 
 # Test 2: api/users should return an empty array when there are no users
-# def test_no_users(empty_db):
-#     response = empty_db.get('/api/users')
-#     print(response.status_code)
-#     assert b'[]' in response.data
+def test_no_users(empty_db):
+    response = empty_db.get('/api/users')
+    print(response.status_code)
+    assert b'[]' in response.data
 
 # Test 3: /api/users should return a 200 status code
-# def test_users_status_code(empty_db):
-#     response = empty_db.get('/api/users')
-#     assert response.status_code == 200
+def test_users_status_code(empty_db):
+    response = empty_db.get('/api/users')
+    assert response.status_code == 200
 
 # Test 4: get_all_users() controller should return an empty array when there are no users
-# def test_get_all_empty_users():
-#     users = get_all_users_json()
+def test_get_all_empty_users(empty_db):
+    users = get_all_users_json()
     # user logger to print messages in tests
-    # LOGGER.info(users)
-    # assert users == []
+    LOGGER.info(users)
+    assert users == []
 
 # Test 5: /api/users view should return json data of user inserted in insert_user_data fixture
 def test_user_route(users_in_db):
@@ -126,47 +124,44 @@ def test_user_route(users_in_db):
 '''
 # This is an integration test because it has side effects in the database
 # Test 5: create_user controller should create a user record with the values given to it
-# def test_create_user(empty_db):
-#     create_user('rob', 'smith', 'rob@mail.com', 'bobpass')
-#     userobj = get_user_by_fname('rob')
+def test_create_user(empty_db):
+    create_user('rob', 'rob@mail.com', 'robpass')
+    userobj = get_user_by_username('rob')
 
-#     checks = False
-#     if userobj.first_name != 'rob' or userobj.last_name != 'smith' or userobj.email != 'bob@mail.com' or not userobj.check_password('bobpass'):
-#         checks = False
-#     assert checks    
+    checks = True
+    if userobj.username!= 'rob' or userobj.email != 'rob@mail.com' or not userobj.check_password('robpass'):
+        checks = False
+    assert checks    
 
 
 # Test 6: create_users controller should create user objects and store them with the values given to it
-# def test_create_users(client):
-    # user_data = [
-    #     {
-    #         'first_name':'Bob',
-    #         'last_name':'Smith',
-    #         'email':'bob@mail.com',
-    #         'password':'bobpass'
-    #     },
-    #     {
-    #         'first_name':'Jame',
-    #         'last_name':'Smith',
-    #         'email':'jane@mail.com',
-    #         'password':'janepass'
-    #     },
-    #     {
-    #         'first_name':'Rick',
-    #         'last_name':'Smith',
-    #         'email':'rick@mail.com',
-    #         'password':'rickpass'
-    #     }
-    # ]
+def test_create_users(client):
+    user_data = [
+            {
+                "email":"bob@mail.com",
+                "id":1,     
+                "username":"bob"
+            },
+            {
+                "email":"jane@mail.com",
+                "id":2,      
+                "username":"Jane"
+            },
+            {
+                "email":"rick@mail.com",
+                "id":3,       
+                "username":"rick"
+            }
+        ]
 
-    # create_users(user_data)
+    create_users(user_data)
 
-    # savedusers = []
-    # checks = True
+    savedusers = []
+    checks = True
 
-    # for user in user_data:
-    #     userobj = get_user_by_fname(user['first_name'])
-    #     if userobj.first_name != user['first_name'] or userobj.last_name != user['last_name'] or userobj.email != user['email'] or not userobj.check_password(user['password']):
-    #         checks = False
+    for user in user_data:
+        userobj = get_user_by_username(user['username'])
+        if userobj.first_name != user['username'] or userobj.email != user['email'] or not userobj.check_password(user['password']):
+            checks = False
 
-    # assert checks
+    assert checks
