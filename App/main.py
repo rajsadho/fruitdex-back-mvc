@@ -59,6 +59,10 @@ def identity(payload):
 
 ''' End JWT Setup '''
 
+def init_db(app):
+    db.init_app(app)
+    db.create_all(app=app)
+
 def create_app(config={}):
     app = Flask(__name__, static_url_path='/static')
     loadConfig(app)
