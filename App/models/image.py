@@ -20,6 +20,7 @@ class Image(db.Model):
         return{
             'id': self.id,
             'uri': self.uri,
+            'image_uri': '',
             'alt_tex': self.alt_text,
             'upvotes': self.upvotes,
             'downvotes': self.downvotes,
