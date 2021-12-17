@@ -17,11 +17,12 @@ from flask_uploads import (
 from App.views import (
     api_views,
     user_views,
-    fruit_views
+    fruit_views,
+    image_views
 )
 
 #place all views here
-views = [api_views, user_views, fruit_views]
+views = [api_views, user_views, fruit_views], image_views
 
 def add_views(app, views):
     for view in views:

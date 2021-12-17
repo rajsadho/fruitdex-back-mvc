@@ -5,13 +5,33 @@ def get_all_images_json():
     images=Image.query.all()
     if not images:
         return[]
-    images=[images.toDict() for image in images]
+    images=[image.toDict() for image in images]
     return images
 
-def create_image(uri,alt_text,upvotes,downvotes):
-    image=Image(uri=uri,alt_text=alt_text,upvotes=upvotes,downvotes=downvotes)
+def get_image_by_id_json(id):
+    image=Image.query.filter_by(id=id).first()
+    if not image:
+        return None
+    return image.toDict()
+
+def get_image_by_user_id_json(user_id):
+    images=Image.query.filter_by(user_id=user_id).all()
+    if not images:
+        return[]
+    images=[image.toDict() for image in images]
+    return images
+
+def get_image_by_fruit_id_json(fruit_id):
+    images=Image.query.filter_by(fruit_id=fruit_id).all()
+    if not images:
+        return[]
+    images=[image.toDict() for image in images]
+    return images
+
+def create_image(uri,alt_text):
+    image=Image(uri=uri,alt_text=alt_text)
     db.session.add(image)
-    db.session .commit()
+    db.session.commit()
 
 def create_images(images):
     for image in images:
