@@ -22,7 +22,7 @@ from App.views import (
 )
 
 #place all views here
-views = [api_views, user_views, fruit_views], image_views
+views = [api_views, user_views, fruit_views, image_views]
 
 def add_views(app, views):
     for view in views:
