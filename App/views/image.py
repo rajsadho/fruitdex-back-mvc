@@ -16,7 +16,7 @@ def get_all_images():
     return jsonify(images=images)
 
 @image_views.route('/api/images',methods=["POST"])
-@jwt_required()
+# @jwt_required()
 def add_image():
     args = request.json
     create_image(args)
