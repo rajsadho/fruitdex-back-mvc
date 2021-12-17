@@ -39,7 +39,10 @@ def loadConfig(app):
             uri = uri.replace("postgres://", "postgresql://", 1)
         app.config['SQLALCHEMY_DATABASE_URI'] = uri
         app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-        app.config['JWT_EXPIRATION_DELTA'] = timedelta(days=os.environ.get('JWT_EXPIRATION_DELTA'))
+        val = os.environ.get('JWT_EXPIRATION_DELTA')
+        if isinstance(val, (str)):
+            val = int(val)
+        app.config['JWT_EXPIRATION_DELTA'] = timedelta(days=val)
         app.config['DEBUG'] = os.environ.get('DEBUG')
         app.config['ENV'] = os.environ.get('ENV')
 
