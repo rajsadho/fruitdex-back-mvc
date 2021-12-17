@@ -19,8 +19,7 @@ LOGGER = logging.getLogger(__name__)
 def empty_db():
     
     if not os.path.exists(os.getcwd()+'/App/temp.db'):
-        os.umask(0)
-        with open(os.open(os.getcwd()+'/App/temp.db', os.O_CREAT | os.O_WRONLY, 0o777), 'w'): pass
+        with open(os.getcwd()+'/App/temp.db', 'w'): pass
     
     app = create_app({'TESTING': True, 'SQLALCHEMY_DATABASE_URI': 'sqlite:///temp.db'})
     db.init_app(app)
@@ -35,8 +34,7 @@ def empty_db():
 def users_in_db():
     
     if not os.path.exists(os.getcwd()+'/App/temp.db'):
-        os.umask(0)
-        with open(os.open(os.getcwd()+'/App/temp.db', os.O_CREAT | os.O_WRONLY, 0o777), 'w'): pass
+        with open(os.getcwd()+'/App/temp.db', 'w'): pass
     
     app = create_app({'TESTING': True, 'SQLALCHEMY_DATABASE_URI': 'sqlite:///temp.db'})
     init_db(app)
@@ -135,21 +133,21 @@ def test_create_user(empty_db):
 
 
 # Test 6: create_users controller should create user objects and store them with the values given to it
-def test_create_users(client):
+def test_create_users(empty_db):
     user_data = [
             {
                 "email":"bob@mail.com",
-                "id":1,     
+                "password":"bobpass",     
                 "username":"bob"
             },
             {
                 "email":"jane@mail.com",
-                "id":2,      
+                "password":"janepass",      
                 "username":"Jane"
             },
             {
                 "email":"rick@mail.com",
-                "id":3,       
+                "password":"rickpass",       
                 "username":"rick"
             }
         ]
@@ -161,7 +159,7 @@ def test_create_users(client):
 
     for user in user_data:
         userobj = get_user_by_username(user['username'])
-        if userobj.first_name != user['username'] or userobj.email != user['email'] or not userobj.check_password(user['password']):
+        if userobj.username != user['username'] or userobj.email != user['email'] or not userobj.check_password(user['password']):
             checks = False
 
     assert checks
