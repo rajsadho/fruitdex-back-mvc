@@ -7,7 +7,7 @@ class FruitName(db.Model):
     name_type = db.Column(db.String)
 
     fruit_id = db.Column(db.ForeignKey('fruit.id'))
-    fruit = db.relationship("Fruit", backref="name")
+    fruit = db.relationship("Fruit", backref="name", viewonly=True)
     
     def toDict(self):
         return{
