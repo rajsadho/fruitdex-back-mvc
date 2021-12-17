@@ -14,14 +14,14 @@ def get_image_by_id_json(id):
         return None
     return image.toDict()
 
-def get_image_by_user_id_json(user_id):
-    images=Image.query.filter_by(user_id=user_id).all()
+def get_images_by_user_id_json(user_id):
+    images=Image.query.filter_by(uploader_id=user_id).all()
     if not images:
         return[]
     images=[image.toDict() for image in images]
     return images
 
-def get_image_by_fruit_id_json(fruit_id):
+def get_images_by_fruit_id_json(fruit_id):
     images=Image.query.filter_by(fruit_id=fruit_id).all()
     if not images:
         return[]

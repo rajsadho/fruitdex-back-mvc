@@ -11,7 +11,8 @@ from App.controllers import (
     get_fruit_dict_by_name,
     create_image,get_fruit_by_tag,
     get_fruit_dict_by_id,
-    get_random_fruit_json
+    get_random_fruit_json,
+    get_images_by_fruit_id_json
     )
 
 
@@ -24,6 +25,11 @@ def get_all_fruits():
 def get_fruit_by_id(fruit_id):
     fruit=get_fruit_dict_by_id(fruit_id)
     return jsonify(fruit=fruit)
+
+@fruit_views.route('/api/fruits/<fruit_id>/images',methods=["GET"])
+def get_fruit_images(fruit_id):
+    images=get_images_by_fruit_id_json(fruit_id)
+    return jsonify(fruit_id=fruit_id, images=images)
 
 @fruit_views.route('/api/fruits/random',methods=["GET"])
 def get_random_fruit():
