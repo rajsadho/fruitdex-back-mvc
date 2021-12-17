@@ -25,7 +25,7 @@ def get_fruit_by_id(fruit_id):
     fruit=get_fruit_dict_by_id(fruit_id)
     return jsonify(fruit=fruit)
 
-@fruit_views.route('api/fruits/random',methods=["GET"])
+@fruit_views.route('/api/fruits/random',methods=["GET"])
 def get_random_fruit():
     fruit=get_random_fruit_json()
     return jsonify(fruit=fruit)
