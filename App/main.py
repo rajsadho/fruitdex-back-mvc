@@ -39,13 +39,13 @@ def loadConfig(app):
             uri = uri.replace("postgres://", "postgresql://", 1)
         app.config['SQLALCHEMY_DATABASE_URI'] = uri
         app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-        app.config['JWT_EXPIRATION_DELTA'] = os.environ.get('JWT_EXPIRATION_DELTA')
+        app.config['JWT_EXPIRATION_DELTA'] = timedelta(days=os.environ.get('JWT_EXPIRATION_DELTA'))
         app.config['DEBUG'] = os.environ.get('DEBUG')
         app.config['ENV'] = os.environ.get('ENV')
 
 ''' Set up JWT here (if using flask JWT)'''
-def authenticate(email, password):
-  user = User.query.filter_by(email=email).first()
+def authenticate(username, password):
+  user = User.query.filter_by(username=username).first()
   if user and user.check_password(password):
     return user
 
