@@ -81,6 +81,8 @@ def create_app(config={}):
     CORS(app, resources={r'/*': {'origins': '*'}})
     app.app_context().push()
 
+    return app
+
 
 
 if __name__ == "__main__":
