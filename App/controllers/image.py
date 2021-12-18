@@ -42,8 +42,8 @@ def create_images(images):
         user = get_user_by_username(image['username'])
         fruit = get_fruit_by_name(image['fruit'])
         newimage = Image(uri=image['uri'],alt_text=image['alt_text'])
-        newimage.uploader = user
-        newimage.fruit = fruit[0]
+        user.images.append(newimage)
+        fruit[0].images.append(newimage)
         db.session.add(newimage)
         
     db.session.commit()
