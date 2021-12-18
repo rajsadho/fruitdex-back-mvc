@@ -81,14 +81,7 @@ def create_app(config={}):
     CORS(app, resources={r'/*': {'origins': '*'}})
     app.app_context().push()
 
-    @app.after_request
-    def after_request(response):
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,Access-Control-Allow-Credentials')
-        response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
-        return response
 
-    return app
 
 if __name__ == "__main__":
     app = create_app()

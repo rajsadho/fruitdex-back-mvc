@@ -46,7 +46,7 @@ def get_fruit_by_name(name):
         all()
 
 def get_fruit_dict_by_id(id):
-    fruit = Fruit.query.filter_by(id=id)
+    fruit = Fruit.query.filter_by(id=id).one_or_none()
     if fruit:
         return fruit.toDict()
     else:

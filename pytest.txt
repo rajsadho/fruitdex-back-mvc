@@ -1,0 +1,38 @@
+============================= test session starts ==============================
+platform linux -- Python 3.9.7, pytest-6.2.5, py-1.11.0, pluggy-1.0.0
+rootdir: /home/work/projects/fruitdex-back-mvc, configfile: pytest.ini, testpaths: App/tests
+collected 7 items
+
+App/tests/test_flaskr.py::test_root PASSED                               [ 14%]
+------------------------------ live log teardown -------------------------------
+/home/work/projects/fruitdex-back-mvc
+
+App/tests/test_flaskr.py::test_no_users PASSED                           [ 28%]
+------------------------------ live log teardown -------------------------------
+/home/work/projects/fruitdex-back-mvc
+
+App/tests/test_flaskr.py::test_users_status_code PASSED                  [ 42%]
+------------------------------ live log teardown -------------------------------
+/home/work/projects/fruitdex-back-mvc
+
+App/tests/test_flaskr.py::test_get_all_empty_users 
+-------------------------------- live log call ---------------------------------
+[]
+PASSED                                                                   [ 57%]
+------------------------------ live log teardown -------------------------------
+/home/work/projects/fruitdex-back-mvc
+
+App/tests/test_flaskr.py::test_user_route PASSED                         [ 71%]
+------------------------------ live log teardown -------------------------------
+/home/work/projects/fruitdex-back-mvc
+
+App/tests/test_flaskr.py::test_create_user PASSED                        [ 85%]
+------------------------------ live log teardown -------------------------------
+/home/work/projects/fruitdex-back-mvc
+
+App/tests/test_flaskr.py::test_create_users PASSED                       [100%]
+------------------------------ live log teardown -------------------------------
+/home/work/projects/fruitdex-back-mvc
+
+
+============================== 7 passed in 0.79s ===============================

@@ -45,12 +45,6 @@ def search():
     else:
         return jsonify(message="No query entered"), 400
 
-@fruit_views.route('/upload',methods=["POST"])
-@login_required
-def upload():
-    data=request.json
-    create_image(data['uri'],data['text'])
-    return ('UPLOADED')
 
 @fruit_views.route('/filter',methods=["GET"])
 def filter(tag):
